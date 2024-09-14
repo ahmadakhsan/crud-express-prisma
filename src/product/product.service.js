@@ -16,22 +16,17 @@ const getProductById = async (id) =>{
     if(!product){
         throw Error("Product Not Found");
     }
-
- 
     return product;
 }
 
 
 const createProduct = async (productData) => {
 
-//    const {name , description, image} = productData;
     const findProduct = await findProductByName(productData.name);
- 
+    
     if(findProduct){
         throw new Error("name has to be uniqiue")
     }
-  
-
     const product = await insertProduct(productData);
 
     return product;
@@ -46,7 +41,7 @@ const deleteProductById = async (id)=>{
 }
 
 const editProductById =  async (id, productData) =>{
-//     await getProductById(id);
+    // await getProductById(id);
 // //    const findProduct = await getProductById(id);
 
 //     // if(!findProduct){

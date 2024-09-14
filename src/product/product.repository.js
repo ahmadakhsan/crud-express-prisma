@@ -55,30 +55,11 @@ const deleteProduct = async (id) => {
     });
 }
 
-// const editProduct = async (id, productData)=> {
- 
-//                              // benar (ada) : salah (kosong)
-//     // const priceCovert = productData.price ? parseInt(productData.price) : price;
- 
-//     const product = await prisma.product.update({
-//      where :{
-//          id : parseInt(id),
-//      },
-//      data : {
-//          description: productData.description,
-//          image: productData.image,
-//          name : productData.name,
-//          price: productData.price,
-//      }
-//     });
- 
-//     return product;
-
-
-// };
-
 
 const editProduct = async (id, productData) => {
+
+    const priceCovert = productData.price ? parseInt(productData.price) : productData.price;
+ 
     const product = await prisma.product.update({
       where: {
         id: parseInt(id),
@@ -87,7 +68,7 @@ const editProduct = async (id, productData) => {
         description: productData.description,
         image: productData.image,
         name: productData.name,
-        price: productData.price,
+        price: priceCovert,
       },
     });
   

@@ -115,27 +115,7 @@ router.put("/:id", async (req, res)=>{
 });
 
 
-// router.patch("/:id", async (req,res)=>{
 
-//     try {
-//         const productId = req.params.id;
-//         const productData = req.body;
-    
-//         const product = await editProductById(parseInt(productId), productData);
-    
-    
-//         res.send({
-//             data : product,
-//             massage : "edit data success"
-//         });
-    
-//     } catch (error) {
-//         res.status(400).send(error.massage);
-        
-//     }
-
-  
-// });
 
 router.patch("/:id", async (req, res) => {
     try {

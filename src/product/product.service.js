@@ -21,7 +21,6 @@ const getProductById = async (id) =>{
 
 const createProduct = async (productData) => {
     const findProduct = await findProductByName(productData.name);
-
     if(findProduct){
         throw new Error("name has to be uniqiue")
     }
@@ -30,7 +29,6 @@ const createProduct = async (productData) => {
 }
 
 const deleteProductById = async (id)=>{
-
         await getProductById(id);
         await  deleteProduct(id);
 }

@@ -19,25 +19,20 @@ const getProductById = async (id) =>{
     return product;
 }
 
-
 const createProduct = async (productData) => {
-
     const findProduct = await findProductByName(productData.name);
-    
+
     if(findProduct){
         throw new Error("name has to be uniqiue")
     }
     const product = await insertProduct(productData);
-
     return product;
-
 }
 
 const deleteProductById = async (id)=>{
 
         await getProductById(id);
         await  deleteProduct(id);
-
 }
 
 const editProductById =  async (id, productData) =>{
@@ -52,13 +47,9 @@ const editProductById =  async (id, productData) =>{
     
 //     const product = await editProduct(id, productData);
     await getProductById(id);
-
     const product = await editProduct(id, productData)
-
     return product;
 }
-
-
 
 
 

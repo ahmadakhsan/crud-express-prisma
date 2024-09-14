@@ -9,17 +9,13 @@ const { getAllProducts, getProductById, createProduct, deleteProductById, editPr
 const router = express.Router();
 
 
-
 router.get("/", async (req, res)=>{
     const products = await getAllProducts();
-
     res.json(products);
 
 });
 
-
 router.get("/:id", async (req, res)=>{
-
 
     try{
         const productId = parseInt(req.params.id);
@@ -29,10 +25,7 @@ router.get("/:id", async (req, res)=>{
     } catch (err){
     
         res.status(400).send(err.message);
-
     }
-
-
 });
 
 
@@ -40,42 +33,26 @@ router.post("/", async (req, res) => {
 
     try {
         const productData = req.body
-
         const product = await createProduct(productData);
-    
         res.send({
             data : product,
             message : "create product success"
         });
     } catch (error) {
-        
         res.status(400).send(error.message);
     }
-
-    
 });
 
 
 router.delete("/:id", async (req, res)=>{
 
-
     try {
-        
         const productId = req.params.id;
-    
         await deleteProductById(parseInt(productId));
-    
         res.send("product deleted");
-
     } catch (error) {
-
         res.status(400).send(error.message);
-        
     }
-
-   
-    
-
 });
 
 
@@ -96,9 +73,7 @@ router.put("/:id", async (req, res)=>{
    }
 
    try {
-
         const product = await editProductById(parseInt(productId), productData);
-
         res.send({
             data : product,
             massage : "edit data success"
@@ -106,24 +81,15 @@ router.put("/:id", async (req, res)=>{
     
    } catch (error) {
         res.status(400).send(error.message);
-    
    }
-
-  
-
-
 });
-
-
 
 
 router.patch("/:id", async (req, res) => {
     try {
       const productId = req.params.id;
       const productData = req.body;
-  
       const product = await editProductById(parseInt(productId), productData);
-  
       res.send({
         data: product,
         message: "edit product success",
@@ -132,8 +98,6 @@ router.patch("/:id", async (req, res) => {
       res.status(400).send(err.message);
     }
 });
-
-
 
 
 

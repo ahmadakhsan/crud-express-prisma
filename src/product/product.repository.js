@@ -5,7 +5,6 @@ const prisma = require("../db")
  
 const findProducts = async () => {
     const products = await prisma.product.findMany();
-
     return products;
 }
 
@@ -15,7 +14,6 @@ const findProductsById = async (id) => {
             id,
         }
     });
-
     return product;
 }
 
@@ -25,12 +23,10 @@ const findProductByName  = async (name) =>{
            name
         }
     })
-    
     return product;
 }
 
 const insertProduct = async (productData)=>{
-
     const price= parseInt(productData.price);
 
     const product = await prisma.product.create({
@@ -41,17 +37,12 @@ const insertProduct = async (productData)=>{
            image: productData.image,
         },
     });
-
     return product;
 }
 
 const deleteProduct = async (id) => {
-  
-
     await prisma.product.delete({
-    where :{
-        id 
-    },
+    where :{ id },
     });
 }
 
@@ -59,7 +50,6 @@ const deleteProduct = async (id) => {
 const editProduct = async (id, productData) => {
 
     const priceCovert = productData.price ? parseInt(productData.price) : productData.price;
- 
     const product = await prisma.product.update({
       where: {
         id: parseInt(id),
@@ -71,11 +61,9 @@ const editProduct = async (id, productData) => {
         price: priceCovert,
       },
     });
-  
     return product;
-  };
+};
   
-
 
 
 module.exports = {

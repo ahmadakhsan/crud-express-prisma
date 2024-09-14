@@ -8,7 +8,6 @@ const { getAllProducts, getProductById, createProduct, deleteProductById, editPr
 
 const router = express.Router();
 
-
 router.get("/", async (req, res)=>{
     const products = await getAllProducts();
     res.json(products);
@@ -16,21 +15,16 @@ router.get("/", async (req, res)=>{
 });
 
 router.get("/:id", async (req, res)=>{
-
     try{
         const productId = parseInt(req.params.id);
         const product = await getProductById(parseInt(productId));
-
         res.send(product);
     } catch (err){
-    
         res.status(400).send(err.message);
     }
 });
 
-
 router.post("/", async (req, res) => {
-
     try {
         const productData = req.body
         const product = await createProduct(productData);
@@ -43,9 +37,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-
 router.delete("/:id", async (req, res)=>{
-
     try {
         const productId = req.params.id;
         await deleteProductById(parseInt(productId));
@@ -55,12 +47,9 @@ router.delete("/:id", async (req, res)=>{
     }
 });
 
-
 router.put("/:id", async (req, res)=>{
-
    const  productId = req.params.id
    const productData = req.body;
-
    if (
       !(
         productData.name && 
@@ -71,19 +60,16 @@ router.put("/:id", async (req, res)=>{
     ){
         return res.status(400).send("Some fields are missing");
    }
-
    try {
         const product = await editProductById(parseInt(productId), productData);
         res.send({
             data : product,
             massage : "edit data success"
         });
-    
    } catch (error) {
         res.status(400).send(error.message);
    }
 });
-
 
 router.patch("/:id", async (req, res) => {
     try {
@@ -98,7 +84,6 @@ router.patch("/:id", async (req, res) => {
       res.status(400).send(err.message);
     }
 });
-
 
 
 module.exports = router

@@ -28,7 +28,6 @@ const findProductByName  = async (name) =>{
 
 const insertProduct = async (productData)=>{
     const price= parseInt(productData.price);
-
     const product = await prisma.product.create({
         data :{
            name : productData.name,
@@ -48,7 +47,6 @@ const deleteProduct = async (id) => {
 
 
 const editProduct = async (id, productData) => {
-
     const priceCovert = productData.price ? parseInt(productData.price) : productData.price;
     const product = await prisma.product.update({
       where: {
